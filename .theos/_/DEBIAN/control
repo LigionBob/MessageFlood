@@ -1,0 +1,10 @@
+Package: imabadparent.messageflood
+Name: MessageFlood
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: A tweak to spam messages. Similar to iFlooder
+Maintainer: Collin Dickert
+Author: Collin Dickert
+Section: Tweaks
+Version: 0.0.1-50+debug
+Installed-Size: 212
