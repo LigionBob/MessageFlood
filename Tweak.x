@@ -42,7 +42,7 @@
 {
 	[super viewDidLoad];
 
-	self.title = @"Message Flooder";
+	self.title = @"Message Flood";
 
 	_mode = 0;
 
@@ -103,12 +103,28 @@
 	[_textView.topAnchor constraintEqualToAnchor:_description.bottomAnchor constant:10].active = YES;
 	[_textView.bottomAnchor constraintEqualToAnchor:self.view.centerYAnchor constant:10].active = YES;
 
-	textField = [[UITextField alloc] initWithFrame:CGRectMake(16, 400, 343, 30)];
+	UILabel *limitDescription = [[UILabel alloc] init];
+	limitDescription.text = @"Message Limit (0 for no limit)";
+	limitDescription.translatesAutoresizingMaskIntoConstraints = NO;
+	limitDescription.font = [UIFont systemFontOfSize:12];
+	limitDescription.textColor = UIColor.grayColor;
+	[self.view addSubview:limitDescription];
+
+	[limitDescription.topAnchor constraintEqualToAnchor:_textView.bottomAnchor constant:10].active = YES;
+	[limitDescription.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor constant:10].active = YES;
+	[limitDescription.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor constant:10].active = YES;
+
+	textField = [[UITextField alloc] init];
+	textField.translatesAutoresizingMaskIntoConstraints = NO;
+	textField.text = @"0";
 	[textField setKeyboardType:UIKeyboardTypeNumberPad];
 	textField.borderStyle = UITextBorderStyleRoundedRect;
 	[self.view addSubview:textField];
-	
-	[textField.bottomAnchor constraintEqualToAnchor:self.view.centerYAnchor constant:10].active = YES;
+
+	[textField.topAnchor constraintEqualToAnchor:limitDescription.bottomAnchor constant:10].active = YES;
+	[textField.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor].active = YES;
+	[textField.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor].active = YES;
+	[textField.bottomAnchor constraintEqualToAnchor:textField.topAnchor constant:25].active = YES;
 
 
 	[self updateView];

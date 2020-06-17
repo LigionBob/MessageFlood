@@ -43,7 +43,7 @@
 -(void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.title = @"Message Flooder";
+	self.title = @"Message Flood";
 
 	_mode = 0;
 
@@ -104,12 +104,28 @@
 	[_textView.topAnchor constraintEqualToAnchor:_description.bottomAnchor constant:10].active = YES;
 	[_textView.bottomAnchor constraintEqualToAnchor:self.view.centerYAnchor constant:10].active = YES;
 
-	textField = [[UITextField alloc] initWithFrame:CGRectMake(16, 400, 343, 30)];
+	UILabel *limitDescription = [[UILabel alloc] init];
+	limitDescription.text = @"Message Limit (0 for no limit)";
+	limitDescription.translatesAutoresizingMaskIntoConstraints = NO;
+	limitDescription.font = [UIFont systemFontOfSize:12];
+	limitDescription.textColor = UIColor.grayColor;
+	[self.view addSubview:limitDescription];
+
+	[limitDescription.topAnchor constraintEqualToAnchor:_textView.bottomAnchor constant:10].active = YES;
+	[limitDescription.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor constant:10].active = YES;
+	[limitDescription.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor constant:10].active = YES;
+
+	textField = [[UITextField alloc] init];
+	textField.translatesAutoresizingMaskIntoConstraints = NO;
+	textField.text = @"0";
 	[textField setKeyboardType:UIKeyboardTypeNumberPad];
 	textField.borderStyle = UITextBorderStyleRoundedRect;
 	[self.view addSubview:textField];
-	
-	[textField.bottomAnchor constraintEqualToAnchor:self.view.centerYAnchor constant:10].active = YES;
+
+	[textField.topAnchor constraintEqualToAnchor:limitDescription.bottomAnchor constant:10].active = YES;
+	[textField.leadingAnchor constraintEqualToAnchor:margins.leadingAnchor].active = YES;
+	[textField.trailingAnchor constraintEqualToAnchor:margins.trailingAnchor].active = YES;
+	[textField.bottomAnchor constraintEqualToAnchor:textField.topAnchor constant:25].active = YES;
 
 
 	[self updateView];
@@ -216,10 +232,10 @@ static UIImage *UIKitImage(NSString *name)
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class CKChatController; @class CKNavigationBarCanvasView; @class CKComposition; 
+@class CKComposition; @class CKNavigationBarCanvasView; @class CKChatController; 
 static void (*_logos_orig$_ungrouped$CKNavigationBarCanvasView$didMoveToSuperview)(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$didMoveToSuperview(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$startFlooding$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, NSNotification *); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$timerFired$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, NSTimer *); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$stopPressed(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$updateRightItem(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$CKNavigationBarCanvasView$setLeftItemView$)(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, UIView *); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$setLeftItemView$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, UIView *); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$buttonPressed(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$sendString$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, NSString *); 
-static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKChatController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKChatController"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKComposition(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKComposition"); } return _klass; }
-#line 197 "Tweak.x"
+static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKComposition(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKComposition"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKChatController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKChatController"); } return _klass; }
+#line 213 "Tweak.x"
 
 __attribute__((used)) static NSString * _logos_method$_ungrouped$CKNavigationBarCanvasView$message(CKNavigationBarCanvasView * __unused self, SEL __unused _cmd) { return (NSString *)objc_getAssociatedObject(self, (void *)_logos_method$_ungrouped$CKNavigationBarCanvasView$message); }; __attribute__((used)) static void _logos_method$_ungrouped$CKNavigationBarCanvasView$setMessage(CKNavigationBarCanvasView * __unused self, SEL __unused _cmd, NSString * rawValue) { objc_setAssociatedObject(self, (void *)_logos_method$_ungrouped$CKNavigationBarCanvasView$message, rawValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC); }
 __attribute__((used)) static BOOL _logos_method$_ungrouped$CKNavigationBarCanvasView$isFlooding(CKNavigationBarCanvasView * __unused self, SEL __unused _cmd) { NSValue * value = objc_getAssociatedObject(self, (void *)_logos_method$_ungrouped$CKNavigationBarCanvasView$isFlooding); BOOL rawValue; [value getValue:&rawValue]; return rawValue; }; __attribute__((used)) static void _logos_method$_ungrouped$CKNavigationBarCanvasView$setIsFlooding(CKNavigationBarCanvasView * __unused self, SEL __unused _cmd, BOOL rawValue) { NSValue * value = [NSValue valueWithBytes:&rawValue objCType:@encode(BOOL)]; objc_setAssociatedObject(self, (void *)_logos_method$_ungrouped$CKNavigationBarCanvasView$isFlooding, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC); }
@@ -428,4 +444,4 @@ static void _logos_method$_ungrouped$CKNavigationBarCanvasView$sendString$(_LOGO
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$CKNavigationBarCanvasView = objc_getClass("CKNavigationBarCanvasView"); MSHookMessageEx(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(didMoveToSuperview), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$didMoveToSuperview, (IMP*)&_logos_orig$_ungrouped$CKNavigationBarCanvasView$didMoveToSuperview);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; memcpy(_typeEncoding + i, @encode(NSNotification *), strlen(@encode(NSNotification *))); i += strlen(@encode(NSNotification *)); _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(startFlooding:), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$startFlooding$, _typeEncoding); }{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; memcpy(_typeEncoding + i, @encode(NSTimer *), strlen(@encode(NSTimer *))); i += strlen(@encode(NSTimer *)); _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(timerFired:), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$timerFired$, _typeEncoding); }{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(stopPressed), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$stopPressed, _typeEncoding); }{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(updateRightItem), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$updateRightItem, _typeEncoding); }MSHookMessageEx(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(setLeftItemView:), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$setLeftItemView$, (IMP*)&_logos_orig$_ungrouped$CKNavigationBarCanvasView$setLeftItemView$);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(buttonPressed), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$buttonPressed, _typeEncoding); }{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; memcpy(_typeEncoding + i, @encode(NSString *), strlen(@encode(NSString *))); i += strlen(@encode(NSString *)); _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(sendString:), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$sendString$, _typeEncoding); }{ char _typeEncoding[1024]; sprintf(_typeEncoding, "%s@:", @encode(NSString *)); class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(message), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$message, _typeEncoding); sprintf(_typeEncoding, "v@:%s", @encode(NSString *)); class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(setMessage:), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$setMessage, _typeEncoding); } { char _typeEncoding[1024]; sprintf(_typeEncoding, "%s@:", @encode(BOOL)); class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(isFlooding), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$isFlooding, _typeEncoding); sprintf(_typeEncoding, "v@:%s", @encode(BOOL)); class_addMethod(_logos_class$_ungrouped$CKNavigationBarCanvasView, @selector(setIsFlooding:), (IMP)&_logos_method$_ungrouped$CKNavigationBarCanvasView$setIsFlooding, _typeEncoding); } } }
-#line 403 "Tweak.x"
+#line 419 "Tweak.x"

@@ -1,9 +1,9 @@
-Package: imabadparent.messageflood
+Package: ligionbob.messageflood
 Name: MessageFlood
 Depends: mobilesubstrate
-Version: 0.0.1
+Version: 1.0.0
 Architecture: iphoneos-arm
-Description: A tweak to spam messages. Similar to iFlooder
+Description: iFlooder fix, plus a message limit.
 Maintainer: Collin Dickert
 Author: Collin Dickert
 Section: Tweaks
