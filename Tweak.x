@@ -227,6 +227,14 @@ static UIImage *UIKitImage(NSString *name)
 
 	self.isFlooding = NO;
 	[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(startFlooding:) name:@"iFlooder.startFlooding" object:nil];
+	[self updateRightItem];
+}
+
+-(void)didMoveToWindow {
+
+	%orig;
+
+	[self updateRightItem];
 }
 
 %new
