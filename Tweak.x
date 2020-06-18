@@ -18,7 +18,7 @@
 @end
 
 @interface CKChatController : UIViewController
--(void)sendCompositionWithThrow:(id)arg1 inConversation:(id)arg2;
+-(void)sendCompositionWithoutThrow:(id)arg1 inConversation:(id)arg2;
 -(id)conversation;
 @end
 
@@ -237,9 +237,9 @@ static UIImage *UIKitImage(NSString *name)
 
 	[self updateRightItem];
 
-	self.message = @"test message";
-	NSInteger mode = 0;
-	NSInteger limit = 10;
+	self.message = arg1.userInfo[@"message"];
+	NSInteger mode = [arg1.userInfo[@"mode"] intValue];
+	NSInteger limit = [arg1.userInfo[@"limit"] intValue];
 
 	void (^operation)() = nil;
 
@@ -250,18 +250,18 @@ static UIImage *UIKitImage(NSString *name)
 			
 			operation = ^()
 			{
-				static NSInteger runNum = 0;
+				//static NSInteger runNum = 0;
 
-				if(runNum < limit) {
+				/*if(runNum < limit) {
 					runNum = runNum + 1;
 					[self sendString:self.message];
 				}
-				else if(limit == 0) {
+				else if(limit == 0) {*/
 					[self sendString:self.message];
-				}
-				else {
-					[self stopPressed];
-				}
+				//}
+				//else {
+				//	[self stopPressed];
+				//}
 				
 			};
 
@@ -278,15 +278,17 @@ static UIImage *UIKitImage(NSString *name)
 
 				if(runNum < limit) {
 					runNum = runNum + 1;
-					if (!words)
+					if (!words) {
 						words = [self.message componentsSeparatedByString:@" "];
+					}
 
 					[self sendString:words[index]];
 					index = (++index == words.count) ? 0 : index;
 				}
 				else if(limit == 0) {
-					if (!words)
+					if (!words) {
 						words = [self.message componentsSeparatedByString:@" "];
+					}
 
 					[self sendString:words[index]];
 					index = (++index == words.count) ? 0 : index;
@@ -414,6 +416,6 @@ static UIImage *UIKitImage(NSString *name)
 	}
 
 	CKComposition *composition = [[%c(CKComposition) alloc] initWithText:[[NSAttributedString alloc] initWithString:arg1] subject:nil];
-	[controller sendCompositionWithThrow:composition inConversation:self.delegate.conversation];
+	[controller sendCompositionWithoutThrow:composition inConversation:self.delegate.conversation];
 }
 %end
