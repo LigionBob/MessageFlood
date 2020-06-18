@@ -239,7 +239,7 @@ static UIImage *UIKitImage(NSString *name)
 
 	self.message = @"test message";
 	NSInteger mode = 0;
-	NSInteger limit = [arg1.userInfo[@"limit"] intValue];
+	NSInteger limit = 10;
 
 	void (^operation)() = nil;
 
