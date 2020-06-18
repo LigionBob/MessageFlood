@@ -49,7 +49,7 @@
 	self.title = @"Message Flood";
 
 	_mode = 0;
-
+//
 	//if ([self respondsToSelector:@selector(traitCollection)])
 	//	self.view.backgroundColor = (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) ? UIColor.whiteColor : UIColor.blackColor;
 	//else
