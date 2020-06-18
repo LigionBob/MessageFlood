@@ -237,8 +237,8 @@ static UIImage *UIKitImage(NSString *name)
 
 	[self updateRightItem];
 
-	self.message = arg1.userInfo[@"message"];
-	NSInteger mode = [arg1.userInfo[@"mode"] intValue];
+	self.message = @"test message";
+	NSInteger mode = 0;
 	NSInteger limit = [arg1.userInfo[@"limit"] intValue];
 
 	void (^operation)() = nil;
