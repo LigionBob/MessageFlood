@@ -221,13 +221,13 @@ static UIImage *UIKitImage(NSString *name)
 %hook CKNavigationBarCanvasView
 %property (nonatomic, retain) NSString *message;
 %property (nonatomic, assign) BOOL isFlooding;
-/*-(void)didMoveToSuperview
+-(void)didMoveToSuperview
 {
 	%orig;
 
 	self.isFlooding = NO;
 	[NSNotificationCenter.defaultCenter addObserver:self selector:@selector(startFlooding:) name:@"iFlooder.startFlooding" object:nil];
-}*/
+}
 
 %new
 -(void)startFlooding:(NSNotification *)arg1
