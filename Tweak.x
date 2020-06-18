@@ -250,18 +250,18 @@ static UIImage *UIKitImage(NSString *name)
 			
 			operation = ^()
 			{
-				//static NSInteger runNum = 0;
+				static NSInteger runNum = 0;
 
-				/*if(runNum < limit) {
+				if(runNum < limit) {
 					runNum = runNum + 1;
 					[self sendString:self.message];
 				}
-				else if(limit == 0) {*/
+				else if(limit == 0) {
 					[self sendString:self.message];
-				//}
-				//else {
-				//	[self stopPressed];
-				//}
+				}
+				else {
+					[self stopPressed];
+				}
 				
 			};
 
