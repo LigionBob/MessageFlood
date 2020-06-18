@@ -240,9 +240,9 @@ static UIImage *UIKitImage(NSString *name)
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class CKComposition; @class CKNavigationBarCanvasView; 
+@class CKChatController; @class CKNavigationBarCanvasView; @class CKComposition; 
 static void (*_logos_orig$_ungrouped$CKNavigationBarCanvasView$didMoveToSuperview)(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$didMoveToSuperview(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$startFlooding$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, NSNotification *); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$timerFired$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, NSTimer *); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$stopPressed(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$updateRightItem(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$CKNavigationBarCanvasView$setLeftItemView$)(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, UIView *); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$setLeftItemView$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, UIView *); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$buttonPressed(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$CKNavigationBarCanvasView$sendString$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST, SEL, NSString *); 
-static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKComposition(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKComposition"); } return _klass; }
+static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKComposition(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKComposition"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKChatController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKChatController"); } return _klass; }
 #line 221 "Tweak.x"
 
 __attribute__((used)) static NSString * _logos_method$_ungrouped$CKNavigationBarCanvasView$message(CKNavigationBarCanvasView * __unused self, SEL __unused _cmd) { return (NSString *)objc_getAssociatedObject(self, (void *)_logos_method$_ungrouped$CKNavigationBarCanvasView$message); }; __attribute__((used)) static void _logos_method$_ungrouped$CKNavigationBarCanvasView$setMessage(CKNavigationBarCanvasView * __unused self, SEL __unused _cmd, NSString * rawValue) { objc_setAssociatedObject(self, (void *)_logos_method$_ungrouped$CKNavigationBarCanvasView$message, rawValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC); }
@@ -439,13 +439,13 @@ static void _logos_method$_ungrouped$CKNavigationBarCanvasView$buttonPressed(_LO
 static void _logos_method$_ungrouped$CKNavigationBarCanvasView$sendString$(_LOGOS_SELF_TYPE_NORMAL CKNavigationBarCanvasView* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, NSString * arg1) {	
 	static CKChatController *controller;
 
-	
+	if (!controller)
+	{
+		controller = self.delegate.proxyNavigationController.childViewControllers.firstObject;
 
-
-
-
-
-
+		if (![controller isKindOfClass:_logos_static_class_lookup$CKChatController()])
+			controller = nil;
+	}
 
 	CKComposition *composition = [[_logos_static_class_lookup$CKComposition() alloc] initWithText:[[NSAttributedString alloc] initWithString:arg1] subject:nil];
 	[controller sendCompositionWithThrow:composition inConversation:self.delegate.conversation];

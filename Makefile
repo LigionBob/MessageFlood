@@ -1,5 +1,5 @@
 TARGET = iphone:latest:13.0
-ARCHS = arm64
+ARCHS = arm64e
 
 INSTALL_TARGET_PROCESSES = MobileSMS
 
