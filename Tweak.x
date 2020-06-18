@@ -42,6 +42,10 @@
 {
 	[super viewDidLoad];
 
+	UITapGestureRecognizer* tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+    	[tapBackground setNumberOfTapsRequired:1];
+    	[self.view addGestureRecognizer:tapBackground];
+
 	self.title = @"Message Flood";
 
 	_mode = 0;
@@ -128,6 +132,10 @@
 
 
 	[self updateView];
+}
+
+- (void)dismissKeyboard:(id)sender {
+    [self.view endEditing:YES];
 }
 
 -(void)updateView
@@ -387,6 +395,7 @@ static UIImage *UIKitImage(NSString *name)
 %new
 -(void)buttonPressed
 {
+	self.isFlooding = NO;
 	CKMessagesSpammerViewController *vc = [[CKMessagesSpammerViewController alloc] init];
 
 	CATransition *transition = [CATransition animation];

@@ -1,7 +1,7 @@
 Package: ligionbob.messageflood
 Name: MessageFlood
 Depends: mobilesubstrate
-Version: 1.0.0
+Version: 1.0.1
 Architecture: iphoneos-arm
 Description: iFlooder fix, plus a message limit.
 Maintainer: Collin Dickert
